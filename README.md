@@ -16,3 +16,5 @@ A self-hosted home network and lab environment built for hands on practice in ne
 - infrastructure/ - hardware, network design, and platform decisions
 - services/ - self-hosted application deployments and configs
 - sandboxes/ - Active Directory, networking, and Linux sandboxes
+
+Insert image
