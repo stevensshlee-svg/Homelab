@@ -15,16 +15,23 @@ Coverage however was still an issue. The large staircase in the center of the ho
 **ISP**
 - AT&T (modem in bridge mode)
 
-**Firewall/Router**
+**Firewall/Router/DHCP Server**
 - Netgate 2100 running pfSense
 
 **Switch**
 - TP-Link TL-SG108PE 8-port managed switch with PoE+
 
 **Wireless**
-- Netgear MR80 (main unit, downstairs) — AP mode, native 
-  VLAN, trusted devices
-- Netgear MR80 (satellite, upstairs) — wired ethernet 
-  backhaul, extends trusted VLAN coverage to upper floor
-- TP-Link Omada EAP610 (downstairs) — IoT VLAN, Ring 
-  cameras and smart home devices
+- Netgear MR80 (main unit, downstairs, 5GHz only) in AP mode, native VLAN, trusted devices. Configured to 5GHz only to avoid channel interference with the EAP610.
+- Netgear MR80 (satellite, upstairs) wired ethernet backhaul, extends trusted VLAN coverage to upper floor
+- TP-Link Omada EAP610 (downstairs, 2.4GHz only) is used to support 802.1Q tagging and be a dedicated IoT SSID mapped to my IoT VLAN. Configured to 2.4GHz to serve Ring cameras which are 2.4GHz only, and to avoid interference with the MR80 operating on 5GHz.
+
+**VLAN Design**
+
+| VLAN | Purpose | Devices |
+|---|---|---|
+| VLAN 10 | Servers | Proxmox host, self-hosted services |
+| VLAN 20 | Trusted | Computers, phones, trusted wireless |
+| VLAN 30 | IoT | Ring cameras, smart home devices |
+
+add rack photo
