@@ -1,1 +1,8 @@
+# Pi-hole
+
+## Overview
+Pi-hole is a network level DNS sinkhole that blocks unwanted content before it reaches your device. Specifically, its most common use case is to block ads on local networks. This is done through network level filtering via dns queries. While a traditional browser-based ad blocker blocks based on HTTP/HTTPS requests before they leave the browser, Pi-hole intercepts dns queries and filters them based on a set list of domains that you can explicitly configure. Traditional browser-based ad blockers are limited to a specific browser process. They cannot block content if the user is using another browser engine that is not using the browser-based ad blocker. However, because Pi-hole operates as a dns server, any device using Pi-hole as a dns server will get content filtering automatically regardless of browser. This extends protection beyond traditional computers entirely. Devices like smart TVs, IoT devices, and mobile apps that have no browser extension support are filtered at the DNS level automatically.
+
+## Deployment
+Pi-hole is deployed as an LXC on Proxmox running Debian 12 with 1 core, 512MB RAM, and 8GB of disk on the ZFS pool. I went with an LXC over a VM because Pi-hole is lightweight enough that spinning up a full VM would just be a waste resources. Additionally, LXC containers share the host kernel so Pi-hole is able to get process isolation without the overhead of running a separate OS. I also gave Pi-hole its own dedicated container rather than bundling it with other services. DNS is extremely important, therefore if it goes down everything loses connectivity. Keeping it isolated means another service going down can't take Pi-hole with it.
 
