@@ -11,7 +11,7 @@ I went with an LXC over a VM because Pi-hole doesn't need a full OS to itself. L
 DNS is extremely important in a network because it acts as a phonebook mapping IP addresses to human-readable names. Without DNS hosts wont be able to access websites, send emails, or know where servers like the domain controller would be. Pi-hole runs in its own dedicated container to provide operational stability through isolation from my other services. Isolation from other services and resources prevents resource exhaustion and the chance of Pi-hole breaking.
 
 ## cloudflared
-cloudflared runs on the same LXC as Pi-hole, listening via 127.0.0.1#5053. It proxies DNS queries from Pi-hole to Cloudflare over HTTTPS (port 443) via TLS instead of UDP 53. This was added to provide an extra layer of security.
+cloudflared runs on the same LXC as Pi-hole, listening via 127.0.0.1#5053. It proxies DNS queries from Pi-hole to Cloudflare over HTTPS (port 443) via TLS instead of UDP 53. This was added to provide an extra layer of security.
 
 Upstream resolvers configured:
 
