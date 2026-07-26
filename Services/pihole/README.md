@@ -25,6 +25,7 @@ The plain Cloudflare fallbacks are intentional. This ensures that if cloudflared
 pfSense hands out Pi-hole's IP via DHCP to every client on all VLANs. Pi-hole handles the filtering while cloudflared handles encryption. Pi-hole receives the query, checks it against the blocklists, and if it passes forwards it to cloudflared which encapsulates it in HTTPS before it leaves my network. 
 
 Validation via Wireshark capture on outbound DNS queries:
+image....
 
 ## Blocklists
 
@@ -42,3 +43,6 @@ ransomware, fraud, abuse, and content filtering:
 | BlocklistProject fraud | Fraud domains |
 | Hagezi DNS light | Multi-purpose, balanced for low false positives |
 | StevenBlack fakenews-gambling-porn | Extended content filtering |
+
+Validation of Pi-hole's network level filtering:
+image....
