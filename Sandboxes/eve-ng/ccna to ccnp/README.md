@@ -1,0 +1,1 @@
+This project serves to help me build on the fundamentals I've learned from the CCNA as I study for the CCNP. I will be recreating a three-tier campus network then adjusting the design to be more complex as I advance my CCNP studies. 
