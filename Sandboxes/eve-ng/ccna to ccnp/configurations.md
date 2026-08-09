@@ -37,4 +37,8 @@ So i decided to go with the 802.3ad standard for port-channel. I configured the 
 
 Ive then validated via do sh etherchannel summary to ensure port-channel is L2 and up (SU), protocol is LACP, and the ports are e0/2 - 3.
 
+L3 configurations:
+first I ran do sh cdp neigh to view which ports are uplinks to csw. I then went into interface config and ran no sw to enable L3 routing on those switch ports. After that I assigned an ip address of 10.0.9x.1/30 to each link with x incrementing by +1. On the CSW i ran the same command but assigned the ip address of 10.0.9x.2/30. 
+
+Next I created svis and assigned ip addresses to each vlan. The addressing scheme went 10.x+y.0.0/24 with x being equal to the vlan number and y being equal to the dsw number. EX: vlan 30 on dsw7 would be 10.31.0.1/24. 
 
