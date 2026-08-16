@@ -56,3 +56,6 @@ standby 10 ip 10.10.0.1, standby 10 prio 90, standby 10 preempt
 standby 20 ip 10.20.0.1, standby 20 prio 90, standby 20 preempt
 standby 30 ip 10.30.0.1, standby 30 prio 110, standby 30 preempt
 standby 40 ip 10.40.0.1, standby 40 prio 110, standby 40 preempt
+
+Routing
+After configuring L2 and ip addressing I configured ospf on the network. I first configured loopback addresses consisting the L3 switches numbers for easier readability when ospf is running (dsw7 lo0 ip addr: 7.7.7.7/32). Then i ran router ospf 1 to create an ospf process and advertised the svis and uplink network. It looked something like network 10.10.0.0 0.0.0.255 area 0 or network 10.0.90.0 0.0.0.3 area 0. Ive decided to keep everything on a single area just for simplicity. I will later implement multi-area opsf. 
