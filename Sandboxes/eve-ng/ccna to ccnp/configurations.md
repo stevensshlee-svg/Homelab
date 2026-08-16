@@ -40,5 +40,19 @@ Ive then validated via do sh etherchannel summary to ensure port-channel is L2 a
 L3 configurations:
 first I ran do sh cdp neigh to view which ports are uplinks to csw. I then went into interface config and ran no sw to enable L3 routing on those switch ports. After that I assigned an ip address of 10.0.9x.1/30 to each link with x incrementing by +1. On the CSW i ran the same command but assigned the ip address of 10.0.9x.2/30. 
 
-Next I created svis and assigned ip addresses to each vlan. The addressing scheme went 10.x+y.0.0/24 with x being equal to the vlan number and y being equal to the dsw number. EX: vlan 30 on dsw7 would be 10.31.0.1/24. 
+Next I created svis and assigned ip addresses to each vlan. The addressing scheme went 10.x.0.y/24 with x being equal to the vlan number and y being equal to the dsw number. EX: vlan 30 on dsw7 would be 10.30.0.(2 or 3)/24. 
 
+HSRP config:
+After creating svis, my next goal was to implement an FRHP protocol into each svi. I decided to use HSRP and configured DSW7 to be the active gateway for vlans 10 and 20 while dsw8 would be the active gateway for vlan 30 and 40. I've repeated this design on dsw9 and dsw10 with each being the active gateway for the first two vlans and the other for the remaining two. 
+
+DSW7
+standby 10 ip 10.10.0.1, standby 10 prio 110, standby 10 preempt
+standby 20 ip 10.20.0.1, standby 20 prio 110, standby 20 preempt
+standby 30 ip 10.30.0.1, standby 30 prio 90, standby 30 preempt
+standby 40 ip 10.40.0.1, standby 40 prio 90, standby 40 preempt
+
+DSW8
+standby 10 ip 10.10.0.1, standby 10 prio 90, standby 10 preempt
+standby 20 ip 10.20.0.1, standby 20 prio 90, standby 20 preempt
+standby 30 ip 10.30.0.1, standby 30 prio 110, standby 30 preempt
+standby 40 ip 10.40.0.1, standby 40 prio 110, standby 40 preempt
